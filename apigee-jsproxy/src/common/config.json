@@ -1,0 +1,12 @@
+{
+  "proxyTargetURL": "https://[The endpoints proxy to]",
+  "enforcerURL": "https://[nginx-emdb-elb endpoints]",
+  "authConfig": {
+    "grant_type": "client_credentials",
+    "client_id": "[The API Client ID]",
+    "client_secret": "[The API Client Secret]",
+    "expires_in": "[Token expired time]"
+  },
+  "useMultipleGoogleAccounts": false,
+  "logLevel": "warn"
+}

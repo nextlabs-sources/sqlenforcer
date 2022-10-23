@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<installConfig>
+  <components>
+    <!-- targetArchitecture can be set one or multiple of them: X86|X64 -->
+    <DAEforODBC targetArchitecture="" />
+    <DAEforADONET targetArchitecture="" />
+    <DAEforOCI>
+      <x86Targets>
+        <x86Target><!-- The path to x86 OCI folder --></x86Target>
+        <!-- You can add another x86Target if you need -->
+      </x86Targets>
+      <x64Targets>
+        <x64Target><!-- The path to x64 OCI folder --></x64Target>
+        <!-- You can add another x64Target if you need -->
+      </x64Targets>
+    </DAEforOCI>
+    <DAEforJDBC>
+      <ojdbc8>
+        <target><!-- The Oracle JDBC driver path to be access controlled --></target>
+        <!-- You can add another target if you need -->
+      </ojdbc8>
+      <ngdbc>
+        <target><!-- The HANA JDBC driver path to be access controlled --></target>
+        <!-- You can add another target if you need -->
+      </ngdbc>
+      <mssql>
+        <target><!-- The Sql Server JDBC driver path to be access controlled --></target>
+        <!-- You can add another target if you need -->
+      </mssql>
+    </DAEforJDBC>
+    <DAEforPowerBI>
+      <x64Targets>
+        <x64Target><!-- The Power BI install path to be access controlled --></x64Target>
+        <!-- You can add another target if you need -->
+      </x64Targets>
+    </DAEforPowerBI>
+  </components>
+</installConfig>

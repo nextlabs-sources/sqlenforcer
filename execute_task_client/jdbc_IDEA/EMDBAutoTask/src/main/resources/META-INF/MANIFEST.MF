@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Main-Class: emdb.EMDBMain
+Class-Path: fastjson-1.2.75.jar nxljdbc1.2.jar ojdbc8-19.9.0.0.jar
+

@@ -1,0 +1,756 @@
+-- Reference document list
+-- https://github.com/Raphael2017/SQL/blob/master/sql-2003-2.bnf
+-- http://www.contrib.andrew.cmu.edu/~shadow/sql/sql1992.txt
+
+<SQL control statement> ::= <call statement>
+
+<call statement> ::=
+    CALL <routine invocation>
+  | <left brace> CALL <routine invocation> <right brace>    -- for sqlserver
+
+<routine invocation> ::= <routine name> <SQL argument list>
+
+<routine name> ::= [ <schema name> <period> ] <qualified identifier>
+
+<SQL argument list> ::= <left paren> [ <SQL argument> [ { <comma> <SQL argument> }... ] ] <right paren>
+
+<SQL argument> ::= <value expression> [ AS <data type> ]
+
+<value expression> ::=
+    <search condition>      -- <boolean value expression>
+  | <row value ctor>        -- <common value expression> <row value expression>
+
+<direct SQL statement> ::= <directly executable statement> <semicolon>
+
+<directly executable statement> ::= <direct SQL data statement>
+
+<direct SQL data statement> ::=
+    <insert statement>
+  | <delete statement: searched>
+  | <update statement: searched>
+  | <direct select statement: multiple rows>
+
+<insert statement> ::= INSERT INTO <insertion target> <insert columns and source>
+
+<insert columns and source> ::=
+    <from subquery>
+  |	<from constructor>
+  | <from default>
+
+<from subquery> ::=
+    [ <left paren> <insert column list> <right paren> ] <query expression>
+
+<from constructor> ::=
+    [ <left paren> <insert column list> <right paren> ] <contextually typed table value constructor>
+
+<contextually typed table value constructor> ::=
+    VALUES <row value ctor list>
+
+<from default> ::= DEFAULT VALUES
+
+<insertion target> ::= <table name>
+
+<insert column list> ::= <column name list>
+
+<delete statement: searched> ::=
+    DELETE FROM <target table> [ WHERE <search condition> ]
+
+<update statement: searched> ::=
+    UPDATE <target table> SET <set clause list> [ WHERE <search condition> ]
+
+<set clause list> ::= <set clause> [ { <comma> <set clause> }... ]
+
+<set clause> ::= <set target> <equals operator> <update source>
+
+<set target> ::= <update target>
+
+<update target> ::= <object column>
+
+<update source> ::= <row value ctor>
+
+<direct select statement: multiple rows> ::=
+    <cursor specification>
+
+<cursor specification> ::=
+    <query expression> [ <order by clause> ]
+
+<order by clause> ::= ORDER BY <sort specification list>
+
+<sort specification list> ::=
+    <sort specification> [ { <comma> <sort specification> }... ]
+
+<sort specification> ::= <sort key> [ <ordering specification> ]
+
+<sort key> ::= <row value ctor>
+
+<query expression> ::=
+    [ <with clause> ] <query expression body>
+
+<with clause> ::= WITH [ RECURSIVE ] <with list>
+
+<with list> ::=
+    <with list element> [ { <comma> <with list element> }... ]
+
+<with list element> ::=
+    <query name> [ <left paren> <with column list> <right paren> ]
+    AS <left paren> <query expression> <right paren>
+
+<with column list> ::= <column name list>
+
+<query expression body> ::=
+    <query term>
+  | <query expression body> UNION [ ALL | DISTINCT ] <query term>
+  | <query expression body> EXCEPT [ ALL | DISTINCT ] <query term>
+
+<query term> ::=
+    <query primary>
+  | <query term> INTERSECT [ ALL | DISTINCT ] <query primary>
+
+<query primary> ::=
+    <simple table>
+  | <left paren> <query expression body> <right paren>
+
+<simple table> ::= <query specification>
+
+<query specification> ::=
+    SELECT [ <set quantifier> ] <select list> <table expression>
+
+<select list> ::= <select sublist> [ { <comma> <select sublist> }... ]
+
+<select sublist> ::=
+    <asterisk>
+  | <derived column>
+  | <qualified asterisk>
+
+<derived column> ::= <row value ctor> [ <as clause> ]
+
+<qualified asterisk> ::=
+    <asterisked identifier chain> <period> <asterisk>
+
+<asterisked identifier chain> ::=
+    <asterisked identifier> [ { <period> <asterisked identifier> }... ]
+
+<asterisked identifier> ::= <identifier>
+
+<table expression> ::=
+    <from clause> [ <where clause> ] [ <group by clause> ] [ <having clause> ]
+
+<having clause> ::= HAVING <search condition>
+
+<where clause> ::= WHERE <search condition>
+
+<group by clause> ::=
+    GROUP BY [ <set quantifier> ] <grouping element list>
+
+<grouping element list> ::=
+    <grouping element> [ { <comma> <grouping element> }... ]
+
+<grouping element> ::=
+    <ordinary grouping set>
+  | <rollup list>
+  | <cube list>
+  | <empty grouping set>
+  | <grouping sets specification>
+
+<rollup list> ::= ROLLUP <left paren> <ordinary grouping set list> <right paren>
+
+<cube list> ::= CUBE <left paren> <ordinary grouping set list> <right paren>
+
+<ordinary grouping set list> ::= <ordinary grouping set> [ { <comma> <ordinary grouping set> }... ]
+
+<grouping sets specification> ::= GROUPING SETS <left paren> <grouping element list> <right paren>
+
+<ordinary grouping set> ::=
+    <grouping column reference>
+  | <left paren> <grouping column reference list> <right paren>
+
+<grouping column reference> ::= <column reference> [ <collate clause> ]
+
+<collate clause> ::= COLLATE <collation name>
+
+<collation name> ::= <schema qualified name>
+
+<schema qualified name> ::=
+    [ <schema name> <period> ] <qualified identifier>
+
+<grouping column reference list> ::=
+    <grouping column reference> [ { <comma> <grouping column reference> }... ]
+
+<column reference> ::= <basic identifier chain>
+
+<from clause> ::= FROM <table reference list>
+
+<table reference list> ::=
+    <table reference> [ { <comma> <table reference> }... ]
+
+<table reference> ::= <table primary or joined table>
+
+<table primary or joined table> ::= <table primary> | <joined table>
+
+<table primary> ::=
+    <table or query name> [ [ AS ] <correlation name> [ <left paren> <derived column list> <right paren> ] ]
+  | <derived table> [ AS ] <correlation name> [ <left paren> <derived column list> <right paren> ]
+  | <left paren> <joined table> <right paren>
+
+<joined table> ::=
+    <cross join>
+  | <qualified join>
+  | <natural join>
+
+<cross join> ::= <table reference> CROSS JOIN <table primary>
+
+<qualified join> ::=
+    <table reference> [ <join type> ] JOIN <table reference> <join specification>
+
+<join specification> ::=
+    <join condition>
+  | <named columns join>
+
+<join condition> ::= ON <search condition>
+
+<named columns join> ::= USING <left paren> <join column list> <right paren>
+
+<natural join> ::=
+    <table reference> NATURAL [ <join type> ] JOIN <table primary>
+
+<derived table> ::= <subquery>
+
+<subquery> ::= <left paren> <query expression> <right paren>
+
+<search condition> ::=
+    <boolean term>
+  | <search condition> OR <boolean term>
+
+<boolean term> ::=
+    <boolean factor>
+  | <boolean term> AND <boolean factor>
+
+<boolean factor> ::=
+    <boolean test>
+  | NOT <boolean factor>
+
+<boolean test> ::= <boolean primary> [ IS [ NOT ] <truth value> ]
+
+<truth value> ::= TRUE | FALSE | UNKNOWN
+
+<boolean primary> ::=
+    predicate
+  | <left paren> <search condition> <right paren>
+
+<predicate> ::=
+    <row value ctor> <comp op> <row value ctor>
+  | <row value ctor> <comp op> <quantifier> <subquery>
+  | <row value ctor> [ NOT ] BETWEEN <row value ctor> AND <row value ctor>
+  | <row value ctor> [ NOT ] LIKE <row value ctor> [ ESCAPE <row value ctor> ]
+  | <row value ctor> [ NOT ] IN <in predicate value>
+  | <row value ctor> IS [ NOT ] NULL
+  | EXISTS <subquery>
+
+<in predicate value> ::=
+    <subquery>
+  | <left paren> <row value ctor list> <right paren>
+
+<row value ctor> ::=
+    <factor 0>
+  | <row value ctor> <cnn op> <factor 0>
+
+<factor 0> ::=
+    <factor 1>
+  | <factor 0> <plus or minus op> ] <factor 1>
+
+<factor 1> ::=
+    <factor 2>
+  | <factor 1> <mul or div or per or mod op> <factor 2>
+
+<factor 2> ::=
+    <factor 3>
+  | <factor 2> <circumflex> <factor 3>
+
+<factor 3> ::= [ <plus or minus op> ] <factor 4>
+
+<factor 4> ::=
+    <column reference>
+  | <expression const>
+  | <function expression>
+  | <subquery>
+  | <case expression>
+  | <left paren> <row value ctor list> <right paren>
+
+<row value ctor list> ::= <row value ctor> [ { <comma> <row value ctor> }... ]
+
+<function expression> ::=
+    <scalar function expression>
+  | <rank window function expression>
+  | <aggregate windowed function expression>
+  | <other function expression>
+--  | <sql2003 keyword function expression>
+
+<other function expression> ::=
+    CAST <left paren> <row value ctor> AS <data type> <right paren>
+  | CONVERT <left paren> <row value ctor> USING <identifier chain> <right paren>
+  | COALESCE <left paren> <row value ctor> <right paren>
+  | CURRENT_TIMESTAMP
+  | CURRENT_TIMESTAMP <left paren> <int number> <right paren>
+  | CURRENT_USER
+  | NULLIF <left paren> <row value ctor> <comma> <row value ctor> <right paren>
+  | SESSION_USER
+  | SYSTEM_USER
+
+<scalar function expression> ::=
+    <identifier chain> <left paren> <right paren>
+  | <identifier chain> <left paren> <row value ctor list> <right paren>
+
+<rank window function expression> ::=
+    <rank function name> <left paren> <right paren> <over clause>
+
+<sql2003 keyword function expression> ::=
+    <non second primary datetime field> <left paren> <row value ctor> <right paren>
+  | RIGHT <left paren> <right paren>
+  | LEFT <left paren> <right paren>
+
+<aggregate windowed function expression> ::=
+    <aggregate function name> <left paren> [ <set quantifier> ] <row value ctor> <right paren> [ <over clause> ]
+  | COUNT <left paren> <asterisk> <right paren> [ <over clause> ]
+  | GROUPING <left paren> <row value ctor> <right paren>
+
+<over clause> ::=
+    OVER <left paren> [ <partition by clause> ] [ <order by clause> ] [ <row or range clause> ] <right paren>
+
+<partition by clause> ::= PARTITION BY <row value ctor list>
+
+<row or range clause> ::=
+    ROWS <window frame extent>
+  | RANGE <window frame extent>
+
+<window frame extent> ::= <window frame start> | <window frame between>
+
+<window frame start> ::= UNBOUNDED PRECEDING | <window frame preceding> | CURRENT ROW
+
+<window frame preceding> ::= <unsigned value specification> PRECEDING
+
+<window frame between> ::= BETWEEN <window frame bound 1> AND <window frame bound 2>
+
+<window frame bound 1> ::= <window frame bound>
+
+<window frame bound 2> ::= <window frame bound>
+
+<window frame bound> ::=
+    <window frame start>
+  | UNBOUNDED FOLLOWING
+  |	<window frame following>
+
+<window frame following> ::= <int number> FOLLOWING
+
+<case expression> ::=
+    CASE [ <case arg> ] <when clause list> [ <case default> ] END
+
+<case arg> ::= <row value ctor>
+
+<when clause list> ::= <when clause> [ { <comma> <when clause> }... ]
+
+<when clause> ::= WHEN <search condition> THEN <row value ctor> | WHEN <row value ctor> THEN <row value ctor>
+
+<case default> ::= ELSE <row value ctor>
+
+<data type> ::=
+    <predefined type>
+  | <user defined type name>
+  | <reference type>
+  | <collection type>
+
+<predefined type> ::=
+    <character string type> [ CHARACTER SET <character set specification> ] [ <collate clause> ]
+  |	<national character string type> [ <collate clause> ]
+  |	<binary large object string type>
+  |	<numeric type>
+  |	<boolean type>
+  |	<datetime type>
+  | <interval type>
+
+<character string type> ::=
+    CHARACTER [ <left paren> <length> <right paren> ]
+  | CHAR [ <left paren> <length> <right paren> ]
+  | CHARACTER VARYING <left paren> <length> <right paren>
+  | CHAR VARYING <left paren> <length> <right paren>
+  | VARCHAR <left paren> <length> <right paren>
+  |	CHARACTER LARGE OBJECT [ <left paren> <large object length> <right paren> ]
+  |	CHAR LARGE OBJECT [ <left paren> <large object length> <right paren> ]
+  | CLOB [ <left paren> <large object length> <right paren> ]
+
+<national character string type> ::=
+    NATIONAL CHARACTER [ <left paren> <length> <right paren> ]
+  | NATIONAL CHAR [ <left paren> <length> <right paren> ]
+  | NCHAR [ <left paren> <length> <right paren> ]
+  |	NATIONAL CHARACTER VARYING <left paren> <length> <right paren>
+  |	NATIONAL CHAR VARYING <left paren> <length> <right paren>
+  |	NCHAR VARYING <left paren> <length> <right paren>
+  |	NATIONAL CHARACTER LARGE OBJECT [ <left paren> <large object length> <right paren> ]
+  |	NCHAR LARGE OBJECT [ <left paren> <large object length> <right paren> ]
+  | NCLOB [ <left paren> <large object length> <right paren> ]
+
+<binary large object string type> ::=
+    BINARY LARGE OBJECT [ <left paren> <large object length> <right paren> ]
+  | BLOB [ <left paren> <large object length> <right paren> ]
+
+<numeric type> ::= <exact numeric type> | <approximate numeric type>
+
+<exact numeric type> ::=
+    NUMERIC [ <left paren> <precision> [ <comma> <scale> ] <right paren> ]
+  | DECIMAL [ <left paren> <precision> [ <comma> <scale> ] <right paren> ]
+  |	DEC [ <left paren> <precision> [ <comma> <scale> ] <right paren> ]
+  |	SMALLINT
+  |	INTEGER
+  |	INT
+  | BIGINT
+
+<approximate numeric type> ::=
+    FLOAT [ <left paren> <precision> <right paren> ]
+  |	REAL
+  | DOUBLE PRECISION
+
+<precision> ::= <int number>
+
+<scale> ::= <int number>
+
+<boolean type> ::= BOOLEAN
+
+<datetime type> ::=
+    DATE
+  |	TIME [ <left paren> <time precision> <right paren> ]
+                                [ <with or without time zone> ]
+  | TIMESTAMP [ <left paren> <timestamp precision> <right paren> ]
+                                [ <with or without time zone> ]
+
+<with or without time zone> ::= WITH TIME ZONE | WITHOUT TIME ZONE
+
+<time precision> ::= <int number>
+
+<timestamp precision> ::= <int number>
+
+<interval type> ::= INTERVAL <interval qualifier>
+
+<interval qualifier> ::=
+		<start field> TO <end field>
+	|	<single datetime field>
+
+<start field> ::=
+    <non-second primary datetime field>
+        [ <left paren> <interval leading field precision> <right paren> ]
+
+<end field> ::=
+		<non-second primary datetime field>
+	|	SECOND [ <left paren> <interval fractional seconds precision> <right paren> ]
+
+<single datetime field> ::=
+		<non-second primary datetime field>
+		    [ <left paren> <interval leading field precision> <right paren> ]
+	|	SECOND [ <left paren> <interval leading field precision>
+	        [ <comma> <interval fractional seconds precision> ] <right paren> ]
+
+<primary datetime field> ::=
+		<non-second primary datetime field>
+	|	SECOND
+
+<non-second primary datetime field> ::= YEAR | MONTH | DAY | HOUR | MINUTE
+
+<interval fractional seconds precision> ::= <int number>
+
+<interval leading field precision> ::= <int number>
+
+<character set specification> ::= <identifier chain>
+
+<large object length> ::=
+    <unsigned integer> [ <multiplier> ] [ <char length units> ]
+
+<char length units> ::= CHARACTERS | CODE_UNITS | OCTETS
+
+<unsigned integer> ::= <int number>
+
+<multiplier> ::= K | M | G
+
+<length> ::= <int number>
+
+<join column list> ::= <column name list>
+
+<derived column list> ::= <column name list>
+
+<column name list> ::=
+    <column name> [ { <comma> <column name> }... ]
+
+<table or query name> ::= <table name>
+
+<correlation name> ::= <identifier>
+
+<object column> ::= <column name>
+
+<column name> ::= <identifier>
+
+<target table> ::= <table name>
+
+<table name> ::= <local or schema qualified name>
+
+<local or schema qualified name> ::=
+    [ <local or schema qualifier> <period> ] <qualified identifier>
+
+<local or schema qualifier> ::= <schema name>
+
+<basic identifier chain> ::= <identifier chain>
+
+<identifier chain> ::= <identifier> [ { <period> <identifier> }... ]
+
+<schema name> ::=
+    [ <catalog name> <period> ] <unqualified schema name>
+
+<catalog name> ::= <identifier>
+
+<unqualified schema name> ::= <identifier>
+
+<qualified identifier> ::= <identifier>
+
+<identifier> ::= <actual identifier>
+
+<actual identifier> ::=
+    <regular identifier> | <delimited identifier>
+
+<delimited identifier> ::=
+    <double quote> <delimited identifier body> <double quote>
+  | <grave accent> <delimited identifier body> <grave accent>       -- for mysql
+
+<rank function name> ::= RANK | DENSE_RANK | ROW_NUMBER | PERCENT_RANK | CUME_DIST
+
+<expression const> ::=
+    <string> | <int number> | <float number>
+  | <truth value> | NULL | DEFAULT | <question mark>
+
+<comp op> ::=
+    <equals operator>
+  | <less than operator> <greater than operator>
+  | <less than operator>
+  | <greater than operator>
+  | <less than operator> <equals operator>
+  | <greater than operator> <equals operator>
+
+<plus or minus op> ::= <plus sign> | <minus sign>
+
+<mul or div or per or mod op> ::= <asterisk> | <solidus> | <percent> | MOD
+
+<string> ::=
+    <quote> <string body> <quote>
+  | N <quote> <string body> <quote>
+
+<set quantifier> ::= DISTINCT | ALL
+
+<ordering specification> ::= ASC | DESC
+
+<join type> ::= INNER | <outer join type> [ OUTER ]
+
+<outer join type> ::= LEFT | RIGHT | FULL
+
+<aggregate function name> ::=
+    AVG | MAX | MIN | SUM
+  | STDDEV_POP | STDDEV_SAMP
+  | VAR_POP | VAR_SAMP | COUNT
+
+<int number> ::= <digit>...
+
+<cnn op> ::= <vertical bar> <vertical bar>
+
+<logic op> ::= AND | OR
+
+<quantifier> ::= ALL | SOME | ANY
+
+<period> ::= .
+
+<semicolon> ::= ;
+
+<quote> ::= '
+
+<double quote> ::= "
+
+<comma> ::= ,
+
+<left paren> ::= (
+
+<right paren> ::= )
+
+<left brace> ::= {
+
+<right brace> ::= }
+
+<asterisk> ::= *
+
+<plus sign> ::= +
+
+<minus sign> ::= -
+
+<less than operator> ::= <
+
+<equals operator> ::= =
+
+<greater than operator> ::= >
+
+<vertical bar> ::= |
+
+<solidus> ::= /
+
+<percent> ::= %
+
+<circumflex> ::= ^
+
+<question mark> ::= ?
+
+<grave accent> ::= `
+
+<digit> ::= 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
+
+<string body> ::= !! See the Syntax Rules
+
+<float number> ::= !! See the Syntax Rules
+
+<delimited identifier body> ::= !! See the Syntax Rules
+
+-- SQL-2003-R means reserved keywords in SQL-2003,
+<keywords> ::=
+  ALL                               /* SQL-2003-R */
+| AND                               /* SQL-2003-R */
+| ANY                               /* SQL-2003-R */
+| ARRAY                             /* SQL-2003-R */
+| AS                                /* SQL-2003-R */
+| ASC                               /* SQL-2003-N */
+| AVG                               /* SQL-2003-N */
+| BETWEEN                           /* SQL-2003-R */
+| BIGINT                            /* SQL-2003-R */
+| BINARY                            /* SQL-2003-R */
+| BLOB                              /* SQL-2003-R */
+| BOOLEAN                           /* SQL-2003-R */
+| BY                                /* SQL-2003-R */
+| CASE                              /* SQL-2003-R */
+| CAST                              /* SQL-2003-R */
+| CHAR                              /* SQL-2003-R */
+| CHARACTER                         /* SQL-2003-R */
+| CHARACTERS                        /* SQL-2003-N */
+| CLOB                              /* SQL-2003-R */
+| COALESCE                          /* SQL-2003-N */
+| CODE_UNITS                        /* SQL-2003-N */
+| COLLATE                           /* SQL-2003-R */
+| CONVERT                           /* SQL-2003-N */
+| CORRESPONDING                     /* SQL-2003-R */
+| COUNT                             /* SQL-2003-N */
+| CROSS                             /* SQL-2003-R */
+| CUBE                              /* SQL-2003-R */
+| CUME_DIST                         /* SQL-2003-N */
+| CURRENT                           /* SQL-2003-R */
+| CURRENT_TIMESTAMP                 /* SQL-2003-R */
+| CURRENT_USER                      /* SQL-2003-R */
+| DATE                              /* SQL-2003-R */
+| DAY                               /* SQL-2003-R */
+| DEC                               /* SQL-2003-R */
+| DECIMAL                           /* SQL-2003-R */
+| DEFAULT                           /* SQL-2003-R */
+| DELETE                            /* SQL-2003-R */
+| DENSE_RANK                        /* SQL-2003-N */
+| DESC                              /* SQL-2003-N */
+| DISTINCT                          /* SQL-2003-R */
+| DOUBLE                            /* SQL-2003-R */
+| ELSE                              /* SQL-2003-R */
+| END                               /* SQL-2003-R */
+| ESCAPE                            /* SQL-2003-R */
+| EXCEPT                            /* SQL-2003-R */
+| EXCLUDE                           /* SQL-2003-N */
+| EXISTS                            /* SQL-2003-R */
+| FLOAT                             /* SQL-2003-R */
+| FOLLOWING                         /* SQL-2003-N */
+| FOR                               /* SQL-2003-R */
+| FROM                              /* SQL-2003-R */
+| FULL                              /* SQL-2003-R */
+| G                                 /* SQL-2003-N */
+| GROUP                             /* SQL-2003-R */
+| GROUPING                          /* SQL-2003-R */
+| HAVING                            /* SQL-2003-R */
+| HOUR                              /* SQL-2003-R */
+| IN                                /* SQL-2003-R */
+| INNER                             /* SQL-2003-R */
+| INSERT                            /* SQL-2003-R */
+| INT                               /* SQL-2003-R */
+| INTEGER                           /* SQL-2003-R */
+| INTERSECT                         /* SQL-2003-R */
+| INTERVAL                          /* SQL-2003-R */
+| INTO                              /* SQL-2003-R */
+| IS                                /* SQL-2003-R */
+| JOIN                              /* SQL-2003-R */
+| K                                 /* SQL-2003-N */
+| LARGE                             /* SQL-2003-R */
+| LEFT                              /* SQL-2003-R */
+| LIKE                              /* SQL-2003-R */
+| M                                 /* SQL-2003-N */
+| MAX                               /* SQL-2003-N */
+| MIN                               /* SQL-2003-N */
+| MINUTE                            /* SQL-2003-R */
+| MOD                               /* SQL-2003-N, here is reserved as an operator */
+| MONTH                             /* SQL-2003-R */
+| MULTISET                          /* SQL-2003-R */
+| NATIONAL                          /* SQL-2003-R */
+| NATURAL                           /* SQL-2003-R */
+| NCHAR                             /* SQL-2003-R */
+| NCLOB                             /* SQL-2003-R */
+| NO                                /* SQL-2003-R */
+| NOT                               /* SQL-2003-R */
+| NULLIF                            /* SQL-2003-N */
+| NUMERIC                           /* SQL-2003-R */
+| OBJECT                            /* SQL-2003-N */
+| OCTETS                            /* SQL-2003-N */
+| OF                                /* SQL-2003-R */
+| ON                                /* SQL-2003-R */
+| ONLY                              /* SQL-2003-R */
+| OR                                /* SQL-2003-R */
+| ORDER                             /* SQL-2003-R */
+| OTHERS                            /* SQL-2003-N */
+| OUTER                             /* SQL-2003-R */
+| OVER                              /* SQL-2003-R */
+| PARTITION                         /* SQL-2003-R */
+| PERCENT_RANK                      /* SQL-2003-N */
+| PRECEDING                         /* SQL-2003-N */
+| PRECISION                         /* SQL-2003-R */
+| RANGE                             /* SQL-2003-R */
+| RANK                              /* SQL-2003-N */
+| READ                              /* SQL-2003-N */
+| REAL                              /* SQL-2003-R */
+| RECURSIVE                         /* SQL-2003-R */
+| REF                               /* SQL-2003-R */
+| RIGHT                             /* SQL-2003-R */
+| ROLLUP                            /* SQL-2003-R */
+| ROW                               /* SQL-2003-R */
+| ROWS                              /* SQL-2003-R */
+| ROW_NUMBER                        /* SQL-2003-N */
+| SCOPE                             /* SQL-2003-? */
+| SECOND                            /* SQL-2003-R */
+| SELECT                            /* SQL-2003-R */
+| SESSION_USER                      /* SQL-2003-R */
+| SET                               /* SQL-2003-R */
+| SETS                              /* SQL-2003-N */
+| SMALLINT                          /* SQL-2003-R */
+| SOME                              /* SQL-2003-R */
+| STDDEV_POP                        /* SQL-2003-N */
+| STDDEV_SAMP                       /* SQL-2003-N */
+| SUM                               /* SQL-2003-N */
+| SYSTEM_USER                       /* SQL-2003-R */
+| THEN                              /* SQL-2003-R */
+| TIES                              /* SQL-2003-N */
+| TIME                              /* SQL-2003-R */
+| TIMESTAMP                         /* SQL-2003-R */
+| TO                                /* SQL-2003-R */
+| UNBOUNDED                         /* SQL-2003-N */
+| UNION                             /* SQL-2003-R */
+| UPDATE                            /* SQL-2003-R */
+| USING                             /* SQL-2003-R */
+| VALUES                            /* SQL-2003-R */
+| VARCHAR                           /* SQL-2003-R */
+| VARYING                           /* SQL-2003-R */
+| VAR_POP                           /* SQL-2003-R */
+| VAR_SAMP                          /* SQL-2003-R */
+| WHEN                              /* SQL-2003-R */
+| WHERE                             /* SQL-2003-R */
+| WITH                              /* SQL-2003-R */
+| WITHOUT                           /* SQL-2003-R */
+| YEAR                              /* SQL-2003-R */
+| ZONE                              /* SQL-2003-N */

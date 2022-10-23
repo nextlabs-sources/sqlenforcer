@@ -1,0 +1,27 @@
+-------------------------------oracle datatype----------------------------
+	mask support datatype
+CHAR
+NCHAR
+VARCHAR2
+NVARCHAR2
+NUMBER
+FLOAT
+DATE
+BINARY_FLOAT
+BINARY_DOUBLE
+INTERVAL YEAR TO MONTH
+INTERVAL DAY TO SECOND
+TIMESTAMP
+TIMESTAMP WITH TIME ZONE
+TIMESTAMP WITH LOCAL TIME ZONE
+	nonsupport special datatype
+LONG
+RAW
+LONG RAW
+BFILE
+CLOB
+BLOB
+NCLOB
+ROWID
+UROWID
+--------------------------------------------------------------------------

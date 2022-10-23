@@ -1,0 +1,12 @@
+
+{
+global:
+    UserAttrInit;
+    GetUserAttr;
+    UserAttrInit_SDK;
+    GetUserAttr_SDK;
+    AddUserAttrValue_SDK;
+    RemoveUserAttrValue_SDK;
+    FreeUserAttr_SDK;
+local: *;
+};

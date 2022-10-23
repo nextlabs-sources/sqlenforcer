@@ -1,0 +1,21 @@
+﻿LIBRARY oci
+EXPORTS
+OCIEnvCreate @302
+OCIEnvNlsCreate @304
+OCIHandleAlloc @353
+OCIHandleFree @354
+OCIInitialize @356
+OCIStmtPrepare @759
+OCIStmtPrepare2 @760
+OCIStmtExecute @753
+OCIServerAttach @742
+OCIAttrSet @209
+OCISessionBegin @746
+
+
+
+
+
+
+
+

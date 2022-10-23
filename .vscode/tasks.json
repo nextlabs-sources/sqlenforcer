@@ -1,0 +1,954 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "windows": {
+        "showOutput": "always",
+        "options": {
+            "env": {
+                "BUILDROOT": "${workspaceRoot}",
+                "BOOSTDIR": "D:/boost/boost2/boost/boost_1_67_0",
+                "JAVAPATH": "C:/Program Files/Java/jdk1.8.0_201",
+                "OPENSSLDIR": "D:/openssl",
+                "CYGWINPATH": "C:/cygwin/bin"
+            },
+        },
+        "tasks": [
+            {
+                "label": "build All x64|release",
+                "isBuildCommand": true,
+                "command": "./build/windows/buildall_build.bat",
+                "args" : [
+                    "x64",
+                    "release",
+                    "${workspaceRoot}"
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}"
+                }
+            } ,
+            {
+                "label": "build All x64|debug",
+                "isBuildCommand": true,
+                "command": "./build/windows/buildall_build.bat",
+                "args" : [
+                    "x64",
+                    "debug",
+                    "${workspaceRoot}"
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}"
+                }
+            } ,
+            {
+                "label": "build All x86|release",
+                "isBuildCommand": true,
+                "command": "./build/windows/buildall_build.bat",
+                "args" : [
+                    "x86",
+                    "release",
+                    "${workspaceRoot}"
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}"
+                }
+            } ,
+            {
+                "label": "build All x86|debug",
+                "isBuildCommand": true,
+                "command": "./build/windows/buildall_build.bat",
+                "args" : [
+                    "x86",
+                    "debug",
+                    "${workspaceRoot}"
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}"
+                }
+            } ,
+            {
+                "label": "Clean All",
+                "isBuildCommand": true,
+                "command": "./build/windows/cleanall.bat",
+                "args" : [
+                    "${workspaceRoot}"
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}"
+                }
+            }, 
+            {
+                "label": "build sqlenforcer x64|release",
+                "isBuildCommand": true,
+                "command": "${workspaceRoot}/build/windows/build.bat",
+                "args" : [
+                    "${workspaceRoot}/sqlenforcer/build/windows/makefile",
+                    "x64",
+                    "release"
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/sqlenforcer",
+                }
+            } ,
+            {
+                "label": "build sqlenforcer x64|debug",
+                "isBuildCommand": true,
+                "command": "${workspaceRoot}/build/windows/build.bat",
+                "args" : [
+                    "${workspaceRoot}/sqlenforcer/build/windows/makefile",
+                    "x64",
+                    "debug"
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/sqlenforcer",
+                }
+            } ,
+            {
+                "label": "build sqlenforcer x86|release",
+                "isBuildCommand": true,
+                "command": "${workspaceRoot}/build/windows/build.bat",
+                "args" : [
+                    "${workspaceRoot}/sqlenforcer/build/windows/makefile",
+                    "x86",
+                    "release"
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/sqlenforcer",
+                }
+            } ,
+            {
+                "label": "build sqlenforcer x86|debug",
+                "isBuildCommand": true,
+                "command": "${workspaceRoot}/build/windows/build.bat",
+                "args" : [
+                    "${workspaceRoot}/sqlenforcer/build/windows/makefile",
+                    "x86",
+                    "debug"
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/sqlenforcer",
+                }
+            } ,
+            {
+                "label": "clean sqlenforcer",
+                "isBuildCommand": true,
+                "command": "${workspaceRoot}/build/windows/clean.bat",
+                "args" :[
+                    "${workspaceRoot}/sqlenforcer/build/windows/makefile",
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/sqlenforcer",
+                }
+            },
+            {
+                "label": "build commonlib x64|release",
+                "isBuildCommand": true,
+                "command": "${workspaceRoot}/build/windows/build.bat",
+                "args" : [
+                    "${workspaceRoot}/commonlib/build/windows/makefile",
+                    "x64",
+                    "release"
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/commonlib",
+                }
+            } ,
+            {
+                "label": "build commonlib x64|debug",
+                "isBuildCommand": true,
+                "command": "${workspaceRoot}/build/windows/build.bat",
+                "args" : [
+                    "${workspaceRoot}/commonlib/build/windows/makefile",
+                    "x64",
+                    "debug"
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/commonlib",
+                }
+            } ,
+            {
+                "label": "build commonlib x86|release",
+                "isBuildCommand": true,
+                "command": "${workspaceRoot}/build/windows/build.bat",
+                "args" : [
+                    "${workspaceRoot}/commonlib/build/windows/makefile",
+                    "x86",
+                    "release"
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/commonlib",
+                }
+            } ,
+            {
+                "label": "build commonlib x86|debug",
+                "isBuildCommand": true,
+                "command": "${workspaceRoot}/build/windows/build.bat",
+                "args" : [
+                    "${workspaceRoot}/commonlib/build/windows/makefile",
+                    "x86",
+                    "debug"
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/commonlib",
+                }
+            } ,
+            {
+                "label": "clean commonlib",
+                "isBuildCommand": true,
+                "command": "${workspaceRoot}/build/windows/clean.bat",
+                "args" :[
+                    "${workspaceRoot}/commonlib/build/windows/makefile",
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/commonlib",
+                }
+            },
+            {
+                "label": "build policymgr x64|release",
+                "isBuildCommand": true,
+                "command": "${workspaceRoot}/build/windows/build.bat",
+                "args" : [
+                    "${workspaceRoot}/policymgr/build/windows/makefile",
+                    "x64",
+                    "release"
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/policymgr",
+                }
+            } ,
+            {
+                "label": "build policymgr x64|debug",
+                "isBuildCommand": true,
+                "command": "${workspaceRoot}/build/windows/build.bat",
+                "args" : [
+                    "${workspaceRoot}/policymgr/build/windows/makefile",
+                    "x64",
+                    "debug"
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/policymgr",
+                }
+            } ,
+            {
+                "label": "build policymgr x86|release",
+                "isBuildCommand": true,
+                "command": "${workspaceRoot}/build/windows/build.bat",
+                "args" : [
+                    "${workspaceRoot}/policymgr/build/windows/makefile",
+                    "x86",
+                    "release"
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/policymgr",
+                }
+            } ,
+            {
+                "label": "build policymgr x86|debug",
+                "isBuildCommand": true,
+                "command": "${workspaceRoot}/build/windows/build.bat",
+                "args" : [
+                    "${workspaceRoot}/policymgr/build/windows/makefile",
+                    "x86",
+                    "debug"
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/policymgr",
+                }
+            } ,
+            {
+                "label": "clean policymgr",
+                "isBuildCommand": true,
+                "command": "${workspaceRoot}/build/windows/clean.bat",
+                "args" :[
+                    "${workspaceRoot}/policymgr/build/windows/makefile",
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/policymgr",
+                }
+            },
+            {
+                "label": "build tsql x64|release",
+                "isBuildCommand": true,
+                "command": "${workspaceRoot}/build/windows/build.bat",
+
+                "args" : [
+                    "${workspaceRoot}/sqlparser/libsql2003/build/windows/makefile",
+                    "x64",
+                    "release"
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/sqlparser/libsql2003",
+                }
+            } ,
+            {
+                "label": "build tsql x64|debug",
+                "isBuildCommand": true,
+                "command": "${workspaceRoot}/build/windows/build.bat",
+                "args" : [
+                    "${workspaceRoot}/sqlparser/libsql2003/build/windows/makefile",
+                    "x64",
+                    "debug"
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/sqlparser/libsql2003",
+                }
+            } ,
+            {
+                "label": "build tsql x86|release",
+                "isBuildCommand": true,
+                "command": "${workspaceRoot}/build/windows/build.bat",
+                "args" : [
+                    "${workspaceRoot}/sqlparser/libsql2003/build/windows/makefile",
+                    "x86",
+                    "release"
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/sqlparser/libsql2003",
+                }
+            } ,
+            {
+                "label": "build tsql x86|debug",
+                "isBuildCommand": true,
+                "command": "${workspaceRoot}/build/windows/build.bat",
+                "args" : [
+                    "${workspaceRoot}/sqlparser/libsql2003/build/windows/makefile",
+                    "x86",
+                    "debug"
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/sqlparser/libsql2003",
+                }
+            } ,
+            {
+                "label": "clean tsql",
+                "isBuildCommand": true,
+                "command": "${workspaceRoot}/build/windows/clean.bat",
+                "args" :[
+                    "${workspaceRoot}/sqlparser/libsql2003/build/windows/makefile",
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/sqlparser/libsql2003",
+                }
+            },
+            {
+                "label": "build odbc32 x64|release",
+                "isBuildCommand": true,
+                "command": "${workspaceRoot}/build/windows/build.bat",
+                "args" : [
+                    "${workspaceRoot}/odbcdm/win32/build/windows/makefile",
+                    "x64",
+                    "release"
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/odbcdm/win32",
+                }
+            } ,
+            {
+                "label": "build odbc32 x64|debug",
+                "isBuildCommand": true,
+                "command": "${workspaceRoot}/build/windows/build.bat",
+                "args" : [
+                    "${workspaceRoot}/odbcdm/win32/build/windows/makefile",
+                    "x64",
+                    "debug"
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/odbcdm/win32",
+                }
+            } ,
+            {
+                "label": "build odbc32 x86|release",
+                "isBuildCommand": true,
+                "command": "${workspaceRoot}/build/windows/build.bat",
+                "args" : [
+                    "${workspaceRoot}/odbcdm/win32/build/windows/makefile",
+                    "x86",
+                    "release"
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/odbcdm/win32",
+                }
+            } ,
+            {
+                "label": "build odbc32 x86|debug",
+                "isBuildCommand": true,
+                "command": "${workspaceRoot}/build/windows/build.bat",
+                "args" : [
+                    "${workspaceRoot}/odbcdm/win32/build/windows/makefile",
+                    "x86",
+                    "debug"
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/odbcdm/win32",
+                }
+            } ,
+            {
+                "label": "clean odbc32",
+                "isBuildCommand": true,
+                "command": "${workspaceRoot}/build/windows/clean.bat",
+                "args":[
+                    "${workspaceRoot}/odbcdm/win32/build/windows/makefile",
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/odbcdm/win32",
+                }
+            },
+            {
+                "label": "build odbc32_ms x64|release",
+                "isBuildCommand": true,
+                "command": "${workspaceRoot}/build/windows/build.bat",
+                "args" : [
+                    "${workspaceRoot}/odbctest/win32/build/windows/makefile",
+                    "x64",
+                    "release"
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/odbctest/win32",
+                }
+            } ,
+            {
+                "label": "build odbc32_ms x64|debug",
+                "isBuildCommand": true,
+                "command": "${workspaceRoot}/build/windows/build.bat",
+                "args" : [
+                    "${workspaceRoot}/odbctest/win32/build/windows/makefile",
+                    "x64",
+                    "debug"
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/odbctest/win32",
+                }
+            } ,
+            {
+                "label": "build odbc32_ms x86|release",
+                "isBuildCommand": true,
+                "command": "${workspaceRoot}/build/windows/build.bat",
+                "args" : [
+                    "${workspaceRoot}/odbctest/win32/build/windows/makefile",
+                    "x86",
+                    "release"
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/odbctest/win32",
+                }
+            } ,
+            {
+                "label": "build odbc32_ms x86|debug",
+                "isBuildCommand": true,
+                "command": "${workspaceRoot}/build/windows/build.bat",
+                "args" : [
+                    "${workspaceRoot}/odbctest/win32/build/windows/makefile",
+                    "x86",
+                    "debug"
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/odbctest/win32",
+                }
+            } ,
+            {
+                "label": "clean odbc32_ms",
+                "isBuildCommand": true,
+                "command": "${workspaceRoot}/build/windows/clean.bat",
+                "args":[
+                    "${workspaceRoot}/odbctest/win32/build/windows/makefile",
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/odbctest/win32",
+                }
+            },
+            {
+                "label": "build install_manager x64|release",
+                "isBuildCommand": true,
+                "command": "${workspaceRoot}/build/windows/build.bat",
+                "args" : [
+                    "${workspaceRoot}/install/tool/install_manager/build/windows/makefile",
+                    "x64",
+                    "release"
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/install/tool/install_manager",
+                }
+            } ,
+            {
+                "label": "build install_manager x64|debug",
+                "isBuildCommand": true,
+                "command": "${workspaceRoot}/build/windows/build.bat",
+                "args" : [
+                    "${workspaceRoot}/install/tool/install_manager/build/windows/makefile",
+                    "x64",
+                    "debug"
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/install/tool/install_manager",
+                }
+            } ,
+            {
+                "label": "clean install_manager",
+                "isBuildCommand": true,
+                "command": "${workspaceRoot}/build/windows/clean.bat",
+                "args":[
+                    "${workspaceRoot}/install/tool/install_manager/build/windows/makefile",
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/install/tool/install_manager",
+                }
+            },
+            {
+                "label": "build JDBC Common",
+                "isBuildCommand": true,
+                "command": "${workspaceRoot}/build/windows/build.bat",
+                "args" : [
+                    "${workspaceRoot}/jdbc/jdbc_common/build/makefile",
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/jdbc/jdbc_common",
+                }
+            },
+            {
+                "label": "build JDBC ORACLE",
+                "isBuildCommand": true,
+                "command": "${workspaceRoot}/build/windows/build.bat",
+                "args" : [
+                    "${workspaceRoot}/jdbc/jdbc_oracle/build/makefile",
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/jdbc/jdbc_oracle",
+                }
+            },
+            {
+                "label": "build JDBC HANA",
+                "isBuildCommand": true,
+                "command": "${workspaceRoot}/build/windows/build.bat",
+                "args" : [
+                    "${workspaceRoot}/jdbc/jdbc_hana/build/makefile",
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/jdbc/jdbc_hana",
+                }
+            },
+            {
+                "label": "build JDBC MSSQL",
+                "isBuildCommand": true,
+                "command": "${workspaceRoot}/build/windows/build.bat",
+                "args" : [
+                    "${workspaceRoot}/jdbc/jdbc_mssql/build/makefile",
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/jdbc/jdbc_mssql",
+                }
+            },
+            {
+                "label": "build userattribute x64|release",
+                "isBuildCommand": true,
+                "command": "${workspaceRoot}/build/windows/build.bat",
+                "args" : [
+                    "${workspaceRoot}/userattribute/build/windows/makefile",
+                    "x64",
+                    "release"
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/userattribute",
+                }
+            } ,
+            {
+                "label": "build userattribute x64|debug",
+                "isBuildCommand": true,
+                "command": "${workspaceRoot}/build/windows/build.bat",
+                "args" : [
+                    "${workspaceRoot}/userattribute/build/windows/makefile",
+                    "x64",
+                    "debug"
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/userattribute",
+                }
+            } ,
+            {
+                "label": "build userattribute x86|release",
+                "isBuildCommand": true,
+                "command": "${workspaceRoot}/build/windows/build.bat",
+                "args" : [
+                    "${workspaceRoot}/userattribute/build/windows/makefile",
+                    "x86",
+                    "release"
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/userattribute",
+                }
+            } ,
+            {
+                "label": "build userattribute x86|debug",
+                "isBuildCommand": true,
+                "command": "${workspaceRoot}/build/windows/build.bat",
+                "args" : [
+                    "${workspaceRoot}/userattribute/build/windows/makefile",
+                    "x86",
+                    "debug"
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/userattribute",
+                }
+            } ,
+            {
+                "label": "clean userattribute",
+                "isBuildCommand": true,
+                "command": "${workspaceRoot}/build/windows/clean.bat",
+                "args" :[
+                    "${workspaceRoot}/userattribute/build/windows/makefile",
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/userattribute",
+                }
+            },
+            {
+                "label": "build EMDB_JDK",
+                "isBuildCommand": true,
+                "command": "${workspaceRoot}/build/windows/build.bat",
+                "args" : [
+                    "${workspaceRoot}/jdbc_emdb_sdk/build/makefile",
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/jdbc_emdb_sdk",
+                }
+            },
+            {
+                "label": "clean EMDB_JDK",
+                "isBuildCommand": true,
+                "command": "${workspaceRoot}/build/windows/clean.bat",
+                "args" : [
+                    "${workspaceRoot}/jdbc_emdb_sdk/build/makefile",
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/jdbc_emdb_sdk"
+                }
+            } ,
+            {
+                "label": "build oci_dae x64|debug",
+                "isBuildCommand": true,
+                "command": "${workspaceRoot}/build/windows/build.bat",
+                "args" : [
+                    "${workspaceRoot}/oci/build/makefile",
+                    "x64",
+                    "debug"
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/oci",
+                }
+            } ,
+            {
+                "label": "build oci_dae x64|release",
+                "isBuildCommand": true,
+                "command": "${workspaceRoot}/build/windows/build.bat",
+                "args" : [
+                    "${workspaceRoot}/oci/build/makefile",
+                    "x64",
+                    "release"
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/oci",
+                }
+            } ,
+            {
+                "label": "build oci_dae x86|release",
+                "isBuildCommand": true,
+                "command": "${workspaceRoot}/build/windows/build.bat",
+                "args" : [
+                    "${workspaceRoot}/oci/build/makefile",
+                    "x86",
+                    "release"
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/oci",
+                }
+            } ,
+            {
+                "label": "clean oci_ms",
+                "isBuildCommand": true,
+                "command": "${workspaceRoot}/build/windows/clean.bat",
+                "args":[
+                    "${workspaceRoot}/oci/build/makefile",
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/oci",
+                }
+            }
+        ]
+    },
+
+    "linux": {
+        "showOutput": "always",
+        "options": {
+            "env": {
+                "JAVAPATH": "/usr/Java/jdk1.8.0_211",
+                "BUILDROOT": "${workspaceRoot}"
+            },
+        },
+        "tasks": [
+            {
+                "label": "build all x86",
+                "isBuildCommand": true,
+                "command": "bash",
+                "args" :[
+                    "./build/linux/buildall.sh",
+                    "x86"
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}"
+                }
+            } ,
+            {
+                "label": "build all x64",
+                "isBuildCommand": true,
+                "command": "bash",
+                "args" :[
+                    "./build/linux/buildall.sh",
+                    "x64"
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}"
+                }
+            } ,
+            {
+                "label": "clean all",
+                "isBuildCommand": true,
+                "command": "bash",
+                "args" :[
+                    "./build/linux/cleanall.sh"
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}"
+                }
+            } ,
+            {
+                "label": "build sqlenforcer x64",
+                "isBuildCommand": true,
+                "command": "bash",
+                "args" :[
+                    "-c",
+                    "make -f ./build/linux/makefile TARGETENVARCH=x64"
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/sqlenforcer",
+                },
+            } ,
+            {
+                "label": "build sqlenforcer x86",
+                "isBuildCommand": true,
+                "command": "bash",
+                "args" :[
+                    "-c",
+                    "make -f ./build/linux/makefile TARGETENVARCH=x86"
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/sqlenforcer",
+                }
+            } ,
+            {
+                "label": "clean sqlenforcer",
+                "isBuildCommand": true,
+                "command": "bash",
+                "args" :[
+                    "-c",
+                    "make -f ./build/linux/makefile clean"
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/sqlenforcer"
+                }
+            },
+            {
+                "label": "build commonlib x64",
+                "isBuildCommand": true,
+                "command": "bash",
+                "args" :[
+                    "-c",
+                    "make -f ./build/linux/makefile TARGETENVARCH=x64"
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/commonlib",
+                },
+            } ,
+            {
+                "label": "build commonlib x86",
+                "isBuildCommand": true,
+                "command": "bash",
+                "args" :[
+                    "-c",
+                    "make -f ./build/linux/makefile TARGETENVARCH=x86"
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/commonlib",
+                }
+            } ,
+            {
+                "label": "clean commonlib",
+                "isBuildCommand": true,
+                "command": "bash",
+                "args" :[
+                    "-c",
+                    "make -f ./build/linux/makefile clean"
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/commonlib"
+                }
+            },
+            {
+                "label": "build poloicymgr x64",
+                "isBuildCommand": true,
+                "command": "bash",
+                "args" :[
+                    "-c",
+                    "make -f ./build/linux/makefile TARGETENVARCH=x64"
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/policymgr"
+                }
+            } ,
+            {
+                "label": "build poloicymgr x86",
+                "isBuildCommand": true,
+                "command": "bash",
+                "args" :[
+                    "-c",
+                    "make -f ./build/linux/makefile TARGETENVARCH=x86"
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/policymgr"
+                }
+            } ,
+            {
+                "label": "clean policymgr",
+                "isBuildCommand": true,
+                "command": "bash",
+                "args" :[
+                    "-c",
+                    "make -f ./build/linux/makefile clean"
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/policymgr"
+                }
+            } ,
+            {
+                "label": "build tsql x64",
+                "isBuildCommand": true,
+                "command": "bash",
+                "args" :[
+                    "-c",
+                    "make -f ./build/linux/makefile TARGETENVARCH=x64"
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/sqlparser/libsql2003"
+                }
+            } ,
+            {
+                "label": "build tsql x86",
+                "isBuildCommand": true,
+                "command": "bash",
+                "args" :[
+                    "-c",
+                    "make -f ./build/linux/makefile TARGETENVARCH=x86"
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/sqlparser/libsql2003"
+                }
+            } ,
+            {
+                "label": "clean tsql",
+                "isBuildCommand": true,
+                "command": "bash",
+                "args" :[
+                    "-c",
+                    "make -f ./build/linux/makefile clean"
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/sqlparser/libsql2003"
+                }
+            },
+            {
+                "label": "build nxlodbc x64",
+                "isBuildCommand": true,
+                "command": "bash",
+                "args" :[
+                    "-c",
+                    "make -f ./build/makefile TARGETENVARCH=x64"
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/odbcdm/linux"
+                }
+            } ,
+            {
+                "label": "build nxlodbc x86",
+                "isBuildCommand": true,
+                "command": "bash",
+                "args" :[
+                    "-c",
+                    "make -f ./build/makefile TARGETENVARCH=x86"
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/odbcdm/linux"
+                }
+            } ,
+            {
+                "label": "clean nxlodbc",
+                "isBuildCommand": true,
+                "command": "bash",
+                "args" :[
+                    "-c",
+                    "make -f ./build/makefile clean"
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/odbcdm/linux"
+                }
+            },
+            {
+                "label": "build JDBC",
+                "isBuildCommand": true,
+                "command": "bash",
+                "args" : [
+                    "-c",
+                    "make -f ${workspaceRoot}/jdbc/build/makefile",
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/jdbc"
+                }
+            },
+            {
+                "label": "clean JDBC",
+                "isBuildCommand": true,
+                "command": "bash",
+                "args" : [
+                    "-c",
+                    "make -f ${workspaceRoot}/jdbc/build/makefile clean",
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/jdbc"
+                }
+            },  
+            {
+                "label": "build EMDB_JDK",
+                "isBuildCommand": true,
+                "command": "bash",
+                "args" : [
+                    "-c",
+                    "make -f ${workspaceRoot}/jdbc_emdb_sdk/build/makefile",
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/jdbc_emdb_sdk"
+                }
+            },
+            {
+                "label": "clean EMDB_JDK",
+                "isBuildCommand": true,
+                "command": "bash",
+                "args" : [
+                    "-c",
+                    "make -f ${workspaceRoot}/jdbc_emdb_sdk/build/makefile clean",
+                ],
+                "options": {
+                    "cwd": "${workspaceRoot}/jdbc_emdb_sdk"
+                }
+            }
+        ]
+
+   
+    }
+}

@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<pluginsConfig>
+  <!--Do not support unicode-->
+  <!--Specify path, load by path, otherwise using the strong name -->
+  <plugins path="D:\Projects\KimProjects\KimResearchAndTest\HOOK\System.data.NLExtend\NLExtend.Plugin\bin\Debug\">
+    <!-- 
+      processorArchitecture canbe set one or multiple of them: MSIL|X86|IA64|Amd64
+      If the plugin is load by path, the host assemlby will first load the plugin which the architecture is the same as the host
+      If failed, it will try to load MSIL version processorArchitecture contains MSIL 
+    -->
+    <plugin name="AsmExtend.Plugin" processorArchitecture="MSIL" publicKeyToken="c48f437b7b6721a8" culture="neutral" version="1.0.0.0" target="Excel.exe|Notepad.exe|System.Data.NLExtend.Proxy.exe">
+      <!--           
+        1. Source: which method will be binding
+            1. Namespace
+            2. Class name
+            3. Method name            
+            4. Parameter type list
+        2. Target: binding to which method
+            1. Namespace
+            2. Class name
+            3. Method name
+			4. Rule: must be static without overwrite method
+			5. Parameters:
+				1. The first parameter is the object instance(this)
+					1. For static method this parameter always set to null
+				2. The second parameter is the original method delegate
+					1. The delegate type is the same as the source method. No need this pointer for any(non-static and static) methods.
+				3. The others is the same as source method
+		3. Before, After
+			1. In C# cannot create a delegate to point a constructor, using two bind method to instead the "target" option
+			2. Before: before source method body execute, it will first to invoke this bind method
+				1. A out boolean flag will  usedto control if need to invoke the source method body
+				2. If the function throw out exceptions, it will execute the source method body and the after bind method also will be invoked
+				3. function signature: bool Execute
+			3. After: before leave source method body, it will invoke this bind method
+				1. Event though the source method body throw out some exception, this method also will be invoked
+				2. If the function throw out exceptions, return the original value which produced by before method body or source method body
+		4. Conflict
+			1. In a plug-in, a source method only can bind one target.
+				1. If multiple targets, the last one replaced the first.
+			2. Support multiple plug-ins to bind one specify source method, but only and must have one target can set bindReturn as true
+				1. If do not set or multiple bindMethod attribute set as true, using the last one.
+				2. bindMethod default value is true
+      -->
+      <!-- Namespace.Class -->
+      <binding source="System.Data.SqlClient.SqlCommand" target="AsmExtend.Plugin.Binding.SqlCommandProxy">
+        <!-- Constructor the method name same as class, using "," to split multiple paramters -->
+        <bindingMethod source="set_CommandText" target="SetCommandText" parameters="System.String"/>
+        <bindingMethod source="get_CommandText" target="GetCommandText" parameters="" bindMethod="true"/>
+      </binding>
+      <binding source="ConsoleAdoHookProxy.Program" target="AsmExtend.Plugin.Binding.ProgramProxy">
+        <!-- Constructor the method name same as class, using "," to split multiple paramters -->
+        <!--
+        <bindingMethod source="MainProxy" target="Main_Log" parameters="System.String[]"/>
+        -->
+      </binding>
+      <binding source="AsmExtendCore.Test.MyTestClass" target="AsmExtend.Plugin.Binding.MyTestClassProxy">
+        <!-- Constructor the method name same as class, using "," to split multiple paramters -->
+        <bindingMethod source="MyTestClass" before="MyTestClassCot1_Before" after="MyTestClassCot1_After" parameters="System.String"/>
+        <bindingMethod source="Test" target="Test" parameters="System.String"/>
+        <bindingMethod source="TestWithRet" target="TestWithRet" parameters="System.String"/>
+        <bindingMethod source="Test" target="Static_Test" parameters="System.String,System.String"/>
+        <bindingMethod source="TestWithRet" target="Static_TestWithRet" parameters="System.String,System.String"/>
+        <bindingMethod source="set_ContentText" target="SetContentText" parameters="System.String"/>
+        <bindingMethod source="get_ContentText" target="GetContentText" parameters=""/>
+      </binding>
+    </plugin>
+  </plugins>
+  <plugins path="D:\Projects\KimProjects\KimResearchAndTest\HOOK\DotNetHook\HookADO\AdoPlugin\bin\Debug\">
+    <plugin name="AdoPlugin" processorArchitecture="MSIL" publicKeyToken="c48f437b7b6721a8" culture="neutral" version="1.0.0.0" >
+      <binding source="System.Data.SqlClient.SqlCommand" target="AdoPlugin.SqlCommandProxy">
+        <bindingMethod source="set_CommandText" target="SetCommandText" parameters="System.String"/>
+        <bindingMethod source="get_CommandText" target="GetCommandText" parameters="" bindMethod="true"/>
+      </binding>
+    </plugin>
+  </plugins>
+</pluginsConfig>

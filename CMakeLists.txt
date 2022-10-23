@@ -1,46 +1,38 @@
-project(sqlenforcer LANGUAGES CXX)
+# We need CMake 3.8 at least, because we require
+# CMAKE_CXX_STANDARD to be set to C++17.
+cmake_minimum_required(VERSION 3.10)
+project(EMDB)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+set(CMAKE_VERBOSE_MAKEFILE on)
+set(OUT_PUT_SO "${PROJECT_SOURCE_DIR}/install/rpm/Common/bin64/")
 
-# Find Boost
-find_package(Boost 1.67 REQUIRED COMPONENTS thread)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${OUT_PUT_SO})
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${OUT_PUT_SO})
+set(Boost_USE_STATIC_LIBS ON)
+set(OPENSSL_USE_STATIC_LIBS ON)
+set(CMAKE_CXX_VISIBILITY_PRESET hidden)
+#add_definitions("-Wall -g")
 
-# Find JNI
-find_package(JNI REQUIRED)
+add_definitions(-DNANODBC_THROW_NO_SOURCE_LOCATION)
 
-message(STATUS "JNI_INCLUDE_DIRS: ${JNI_INCLUDE_DIRS}")
-
-aux_source_directory(./src SRCS)
-add_library(${PROJECT_NAME} SHARED ${SRCS})
-
-target_include_directories(${PROJECT_NAME} PUBLIC
-    include
-    ../sqlparser/libsql2003/include
-    ../policymgr/include
-    ../userattribute/include
-    ../query_cloud_az_sdk/QueryCloudAZSDKCpp/include
-    ${JNI_INCLUDE_DIRS}
-)
-
-target_link_libraries(${PROJECT_NAME}
-    common
-    dl
-    Boost::headers
-    Boost::thread
-)
-
-if (UNIX)
-    target_compile_options(${PROJECT_NAME} PRIVATE -fPIC -fvisibility=hidden -Wall -pedantic)
-    target_link_options(${PROJECT_NAME} PRIVATE -static-libgcc -static-libstdc++)
-    if (CMAKE_BUILD_TYPE STREQUAL "RelWithDebInfo")
-        add_custom_command(
-            TARGET
-                ${PROJECT_NAME}
-            POST_BUILD
-                COMMAND ${CMAKE_OBJCOPY} --only-keep-debug $<TARGET_FILE:${PROJECT_NAME}> $<TARGET_FILE:${PROJECT_NAME}>.debug
-                COMMAND ${CMAKE_STRIP} $<TARGET_FILE:${PROJECT_NAME}>
-                COMMAND ${CMAKE_OBJCOPY} --add-gnu-debuglink=$<TARGET_FILE:${PROJECT_NAME}>.debug $<TARGET_FILE:${PROJECT_NAME}>
-            COMMENT
-                "separate symbol file"
-            VERBATIM
-        )
-    endif ()
-endif ()
+add_subdirectory(commonlib)
+add_subdirectory(policymgr)
+add_subdirectory(userattribute)
+add_subdirectory(./sqlparser/libsql2003)
+add_subdirectory(sqlenforcer)
+add_subdirectory(odbcdm/linux)
+add_subdirectory(query_cloud_az_sdk/QueryCloudAZSDKCpp)
+add_subdirectory(jdbc/jdbc_hana)
+add_subdirectory(jdbc/jdbc_mssql)
+add_subdirectory(jdbc/jdbc_nxl)
+add_subdirectory(jdbc/jdbc_oracle)
+add_subdirectory(jdbc_emdb_sdk)
+add_subdirectory(encrypt_tool)
+#add_subdirectory(execute_task_client/odbc/EMDBAutoTask)
+#add_subdirectory(unittest)
+#add_subdirectory(unittest_odbc)
+# add_subdirectory(oci)
+# add_subdirectory(oci/thirdpart/linux/funchook)
+# add_subdirectory(install/tool/install_manager)

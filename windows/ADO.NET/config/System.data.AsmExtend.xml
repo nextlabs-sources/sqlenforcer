@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pluginsConfig>
+  <plugins path="C:\Program Files\NextLabs\DAEforWin\ADO.NET\">
+    <plugin name="AsmExtend.Plugin" processorArchitecture="X86|IA64|Amd64" publicKeyToken="c48f437b7b6721a8" culture="neutral" version="1.0.0.0" target="*">
+      <binding source="System.Data.SqlClient.SqlCommand" target="AsmExtend.Plugin.Binding.SqlCommandProxy">
+        <bindingMethod source="get_CommandText" target="GetCommandText" parameters="" bindMethod="true"/>
+      </binding>
+      <binding source="System.Data.SqlClient.SqlConnection" target="AsmExtend.Plugin.Binding.SqlConnectionProxy">
+        <bindingMethod source="Open" target="Open" parameters="" bindMethod="true"/>
+        <bindingMethod source="Close" target="Close" parameters="" bindMethod="true"/>
+        <bindingMethod source="ChangeDatabase" target="ChangeDatabase" parameters="System.String" bindMethod="true"/>
+      </binding>
+    </plugin>
+  </plugins>
+</pluginsConfig>

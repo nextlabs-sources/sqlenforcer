@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pluginsConfig>
+  <plugins path="C:\ProgramData\Nextlabs\DAEforWin\DotNet\bin\">
+    <plugin name="AsmExtend.Plugin" processorArchitecture="X86|IA64|Amd64" publicKeyToken="c48f437b7b6721a8" culture="neutral" version="1.0.0.0" target="Microsoft.Mashup.Container.NetFX40.exe|EMDBApp.exe">
+      <binding source="System.Data.SqlClient.SqlCommand" target="AsmExtend.Plugin.Binding.SqlCommandProxy">
+        <bindingMethod source="set_CommandText" target="SetCommandText" parameters="System.String"/>
+        <bindingMethod source="get_CommandText" target="GetCommandText" parameters="" bindMethod="true"/>
+      </binding>
+    </plugin>
+  </plugins>
+</pluginsConfig>

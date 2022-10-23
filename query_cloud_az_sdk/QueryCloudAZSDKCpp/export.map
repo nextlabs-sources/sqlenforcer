@@ -1,0 +1,13 @@
+
+{
+global:
+    QueryCloudAZInit;
+    CheckSingleResource;
+    CheckMultiResource;
+    CreatePolicyRequest;
+    CreateCEAttr;
+    FreePolicyRequest;
+    FreePolicyResult;
+    FreeCEAttr;
+local: *;
+};

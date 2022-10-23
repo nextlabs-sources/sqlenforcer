@@ -1,0 +1,224 @@
+0000000000019b20 T SQLAllocConnect **
+000000000001b960 T SQLAllocEnv     **
+0000000000029420 T SQLAllocHandle  **
+000000000001f440 T SQLAllocStmt    **
+0000000000026a50 T SQLBindCol      **
+0000000000030180 T SQLBindParam    **
+0000000000024b40 T SQLBindParameter **
+0000000000015760 T SQLBrowseConnect **
+00000000000158f0 T SQLBrowseConnectA**
+0000000000015a70 T SQLBrowseConnectW**
+000000000002fad0 T SQLBulkOperations **
+000000000001fc00 T SQLCancel         **
+00000000000301d0 T SQLCloseCursor    **
+000000000002f410 T SQLColAttribute   **
+000000000002f600 T SQLColAttributeA  **
+000000000002f7f0 T SQLColAttributeW  **
+0000000000027ff0 T SQLColAttributes  **
+00000000000281e0 T SQLColAttributesA **
+00000000000283d0 T SQLColAttributesW **
+000000000000bd50 T SQLColumnPrivileges **
+000000000000bfa0 T SQLColumnPrivilegesA**
+000000000000c1f0 T SQLColumnPrivilegesW**
+000000000000c8c0 T SQLColumns          **
+000000000000cb10 T SQLColumnsA         **
+000000000000cd60 T SQLColumnsW         **
+0000000000012fd0 T SQLConnect          **
+0000000000013180 T SQLConnectA         **
+0000000000013330 T SQLConnectW         **
+000000000002e9d0 T SQLCopyDesc         **
+0000000000021830 T SQLDataSources      **
+00000000000219b0 T SQLDataSourcesA     **
+0000000000021b30 T SQLDataSourcesW     **
+0000000000027270 T SQLDescribeCol      **
+00000000000274b0 T SQLDescribeColA     **
+00000000000276f0 T SQLDescribeColW     **
+0000000000018000 T SQLDescribeParam    **
+0000000000015bf0 T SQLDisconnect       **
+0000000000014b20 T SQLDriverConnect    **
+0000000000014ce0 T SQLDriverConnectA   **
+0000000000014ea0 T SQLDriverConnectW   **
+0000000000022270 T SQLDrivers          **
+00000000000223f0 T SQLDriversA         **
+0000000000022570 T SQLDriversW         **
+000000000002f9e0 T SQLEndTran          **
+000000000001c500 T SQLError            **
+000000000001c650 T SQLErrorA           **
+000000000001c7a0 T SQLErrorW           **
+0000000000017260 T SQLExecDirect       **
+00000000000173e0 T SQLExecDirectA      **
+0000000000017550 T SQLExecDirectW      **
+0000000000016b50 T SQLExecute          **
+00000000000189d0 T SQLExtendedFetch    **
+00000000000185e0 T SQLFetch            **
+000000000002fd50 T SQLFetchScroll      **
+000000000000d5e0 T SQLForeignKeys      **
+000000000000d8e0 T SQLForeignKeysA     **
+000000000000dbe0 T SQLForeignKeysW     **
+0000000000019cf0 T SQLFreeConnect      **
+000000000001b860 T SQLFreeEnv          **
+00000000000296d0 T SQLFreeHandle       **
+0000000000020d20 T SQLFreeStmt         **
+000000000002c8f0 T SQLGetConnectAttr   **
+000000000002ca60 T SQLGetConnectAttrA  **
+000000000002cbd0 T SQLGetConnectAttrW  **
+000000000001b010 T SQLGetConnectOptionl
+000000000001b160 T SQLGetConnectOptionA **
+000000000001b2b0 T SQLGetConnectOptionW **
+0000000000025f60 T SQLGetCursorName     **
+00000000000260f0 T SQLGetCursorNameA    **
+0000000000026280 T SQLGetCursorNameW    **
+0000000000018ba0 T SQLGetData           **
+000000000002d100 T SQLGetDescField      **
+000000000002d290 T SQLGetDescFieldA     **
+000000000002d420 T SQLGetDescFieldW     **
+000000000002dfd0 T SQLGetDescRec        **
+000000000002e240 T SQLGetDescRecA       **
+000000000002e4a0 T SQLGetDescRecW       **
+000000000001e860 T SQLGetDiagField      **
+000000000001e990 T SQLGetDiagFieldA     **
+000000000001eac0 T SQLGetDiagFieldW     **
+000000000001d190 T SQLGetDiagRec        **
+000000000001d2e0 T SQLGetDiagRecA       **
+000000000001d430 T SQLGetDiagRecW       **
+0000000000029ed0 T SQLGetEnvAttr        **
+0000000000023780 T SQLGetFunctions      **
+0000000000023300 T SQLGetInfo           **
+0000000000023480 T SQLGetInfoA          **
+0000000000023600 T SQLGetInfoW          **
+000000000002abd0 T SQLGetStmtAttr       **
+000000000002ad70 T SQLGetStmtAttrA      **
+000000000002af10 T SQLGetStmtAttrW      **
+0000000000020000 T SQLGetStmtOption     **
+000000000001fe90 T SQLGetStmtOptionA    **
+0000000000009180 T SQLGetTypeInfo       **
+00000000000092e0 T SQLGetTypeInfoA      **
+0000000000009450 T SQLGetTypeInfoW      **
+0000000000018fd0 T SQLMoreResults       **
+0000000000016140 T SQLNativeSql         **
+00000000000162d0 T SQLNativeSqlA        **
+0000000000016460 T SQLNativeSqlW        **
+0000000000017d70 T SQLNumParams         **
+00000000000267f0 T SQLNumResultCols     **
+0000000000017a40 T SQLParamData         **
+0000000000025200 T SQLParamOptions      **
+0000000000023fd0 T SQLPrepare           **
+0000000000024140 T SQLPrepareA          **
+00000000000242c0 T SQLPrepareW          **
+000000000000e2b0 T SQLPrimaryKeys       **
+000000000000e4b0 T SQLPrimaryKeysA      **
+000000000000e6b0 T SQLPrimaryKeysW      **
+000000000000ed30 T SQLProcedureColumns  **
+000000000000ef80 T SQLProcedureColumnsA **
+000000000000f1d0 T SQLProcedureColumnsW **
+000000000000f7f0 T SQLProcedures        **
+000000000000f9f0 T SQLProceduresA       **
+000000000000fbf0 T SQLProceduresW       **
+00000000000176d0 T SQLPutData           **
+0000000000026410 T SQLRowCount          **
+000000000002c4d0 T SQLSetConnectAttr    **
+000000000002c630 T SQLSetConnectAttrA   **
+000000000002c790 T SQLSetConnectAttrW   **
+000000000001a5f0 T SQLSetConnectOption  **
+000000000001a740 T SQLSetConnectOptionA **
+000000000001a890 T SQLSetConnectOptionW **
+00000000000246c0 T SQLSetCursorName     **
+0000000000024840 T SQLSetCursorNameA    **
+00000000000249c0 T SQLSetCursorNameW    **
+000000000002d830 T SQLSetDescField      **
+000000000002d9b0 T SQLSetDescFieldA
+000000000002db30 T SQLSetDescFieldW     **
+000000000002e700 T SQLSetDescRec        **
+0000000000029d00 T SQLSetEnvAttr        **
+0000000000025bd0 T SQLSetParam          **
+00000000000194d0 T SQLSetPos            **
+00000000000255d0 T SQLSetScrollOptions  **
+000000000002c020 T SQLSetStmtAttr       **
+000000000002c1b0 T SQLSetStmtAttrA
+000000000002c340 T SQLSetStmtAttrW      **
+00000000000202f0 T SQLSetStmtOption     **
+0000000000020180 T SQLSetStmtOptionA    **
+0000000000009a80 T SQLSpecialColumns    **
+0000000000009cf0 T SQLSpecialColumnsA   **
+0000000000009f70 T SQLSpecialColumnsW   **
+000000000000a670 T SQLStatistics        **
+000000000000a8c0 T SQLStatisticsA       **
+000000000000ab10 T SQLStatisticsW       **
+00000000000101c0 T SQLTablePrivileges   **
+00000000000103c0 T SQLTablePrivilegesA  **
+00000000000105c0 T SQLTablePrivilegesW  **
+000000000000b1e0 T SQLTables            **
+000000000000b430 T SQLTablesA           **
+000000000000b680 T SQLTablesW           **
+000000000001b530 T SQLTransact          **
+                 w _Jv_RegisterClasses
+                 U __assert_fail
+                 U __ctype_b_loc
+                 U __ctype_toupper_loc
+                 w __cxa_finalize
+                 U __fprintf_chk
+                 w __gmon_start__
+                 U __progname
+                 U __snprintf_chk
+                 U __sprintf_chk
+                 U __stack_chk_fail
+                 U __strdup
+                 U __vfprintf_chk
+                 U __xstat
+                 U access
+                 U calloc
+                 U close
+                 U creat
+                 U dlclose
+                 U dlerror
+                 U dlopen
+                 U dlsym
+                 U fclose
+                 U fdopen
+                 U fopen
+                 U fputc
+                 U free
+                 U ftell
+                 U getenv
+                 U geteuid
+                 U getpid
+                 U getpwuid
+                 U gettimeofday
+                 U getuid
+0000000000251228 D iodbc_version
+                 U localtime_r
+                 U malloc
+                 U mbstowcs
+                 U memcpy
+                 U memmove
+                 U open
+                 v program_invocation_short_name
+                 U pthread_mutex_init
+                 U pthread_mutex_lock
+                 U pthread_mutex_unlock
+                 U pthread_self
+                 U qsort
+                 U read
+                 U realloc
+                 U setvbuf
+                 U snprintf
+                 U stderr
+                 U strcasecmp
+                 U strchr
+                 U strcmp
+                 U strcpy
+                 U strftime
+                 U strlen
+                 U strncmp
+                 U strncpy
+                 U strrchr
+                 U strstr
+                 U strtol
+                 U time
+                 U tzset
+                 U wcschr
+                 U wcscpy
+                 U wcslen
+                 U wcsncat
+                 U wcsncpy
+                 U wcstombs
